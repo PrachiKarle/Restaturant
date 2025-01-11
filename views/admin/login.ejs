@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Login</title>
+    <%- include('../cdn.ejs') %>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="px-5" style="background-color: #191928;">
+            <h1 class="text-warning fw-bold my-3">Admin Login</h1>
+            <form action="/admin/loginadmin" method="post" class="my-5">
+                <div class="form-group my-3 text-light">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" name="admin_email" required>
+                </div>
+                <div class="form-group my-3 text-light">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" name="admin_pass" required>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-warning text-light form-control">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

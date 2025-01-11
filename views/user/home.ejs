@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restoran</title>
+
+    <!-- cdn links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+
+    <style>
+      #main_div {
+        background: url("images/about.jpg") no-repeat center center/cover;
+        background-size: 100% 100%;
+      }
+      #main_div1 {
+        background-color: #191928 !important;
+        opacity: 0.9;
+        height: 100%;
+      }
+      .active {
+        color: #ffc107 !important;
+      }
+      nav {
+        background-color: #191928 !important;
+        opacity: 0.9;
+      }
+      .div1 {
+        background: url("images/about1.jpg") no-repeat center center/cover;
+        background-size: 100% 100%;
+      }
+
+      #service1 {
+        background-color: white !important;
+        box-shadow: 0px 0px 5px 2px rgb(189, 188, 188) !important;
+        color: #191928 !important;
+      }
+
+      #service1:hover {
+        background-color: #191928 !important;
+        box-shadow: none !important;
+        color: white !important;
+      }
+      #about img:hover{
+         transform: scale(0.9);
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <!-- navbar -->
+    <div class="div1">
+      <nav class="navbar navbar-expand-lg p-3 text-light">
+        <a href="#" class="navbar-brand text-warning fw-bold mx-5 display-3"
+          >Restoran</a
+        >
+
+        <button
+          class="navbar-toggler bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse me-5" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/" class="nav-link text-light">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link text-light">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#service" class="nav-link text-light">Service</a>
+            </li>
+            <li class="nav-item">
+              <a href="/menu" class="nav-link text-light">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a href="#booking" class="nav-link text-light">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link text-light">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/sign"><button class="btn btn-warning text-light fw-bold px-4 ms-2">Sign in</button></a> 
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- home page -->
+    <div class="container-fluid m-0 p-0" id="main_div">
+      <div class="row m-0 p-4" id="main_div1">
+        <div class="col-md-6 col-12 p-5">
+          <h1 class="text-light fw-bold display-3">
+            Enjoy Our Delicious Meal!
+          </h1>
+          <p class="text-light fs-small">
+            "Good food, great vibes. We bring people together with mouthwatering
+            dishes, a warm atmosphere, and friendly service. Discover the
+            perfect spot for your next meal."
+          </p>
+          <button class="btn btn-warning px-4 text-light my-3">
+            Book A Table
+          </button>
+        </div>
+        <div class="col-md-6 col-12 p-4">
+          <img
+            src="images/first.jpg"
+            height="100%"
+            width="100%"
+            style="border-radius: 50%"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- service -->
+    <div class="container-fluid m-0 py-5" id="service">
+      <h4
+        class="text-center text-warning fw-bold"
+        style="font-variant: small-caps"
+      >
+        <i>Our Services</i>
+      </h4>
+
+      <h3 class="text-center" style="color: #191928 !important">
+        Explore Our Services
+      </h3>
+
+      <div class="row m-0 p-4">
+        <% data.map((val)=>{ %>
+        <div class="col-md-3 p-2">
+          <div class="w-100 p-2" id="service1">
+            <img src="/uploads/<%= val.serv_img%>" height="60px" />
+            <h5 class="my-3"><%= val.serv_name%></h5>
+            <p><%= val.serv_info%></p>
+          </div>
+        </div>
+        <%})%>
+      </div>
+    </div>
+
+    <!-- about us -->
+    <div class="container-fluid m-0 p-5" id="about">
+      <div class="row m-0 p-0">
+        <div class="col-md-6 m-0 p-0 col-12">
+          <div class="row m-0 p-0">
+            <div class="col-md-6 col-12 m-0 p-2">
+              <img
+                src="/images/about-1.jpg"
+                height="200px"
+                width="94%"
+                alt=""
+              />
+            </div>
+            <div class="col-md-6 col-12 m-0 p-2">
+              <img
+                src="/images/about-2.jpg"
+                style="position: relative; top: 50px; right: 1%"
+                height="150px"
+                width="70%"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="row m-0 p-0">
+            <div class="col-md-6 col-12 m-0 p-2">
+              <img
+                src="/images/about-3.jpg"
+                style="position: relative; left: 25%"
+                height="150px"
+                width="70%"
+                alt=""
+              />
+            </div>
+            <div class="col-md-6 col-12 m-0 p-2">
+              <img
+                src="/images/about-4.jpg"
+                height="200px"
+                width="94%"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 ps-5">
+          <h4 class="text-warning fw-bold" style="font-variant: small-caps">
+            <i>About Us</i>
+          </h4>
+          <h1 class="display-5 fw-bold" style="color: #191928">
+            Welcome to Restoran
+          </h1>
+
+          <h6 class="my-4 fw-normal">
+            Food is more than just a meal—it’s an experience, a passion, and a
+            way of bringing people together. Founded on the principles of
+            quality, creativity, and exceptional service, we aim to create
+            moments that leave lasting impressions.
+          </h6>
+
+          <h6 class="my-4 fw-normal">
+            With a vision to provide a dining experience that blends tradition
+            and innovation. From our humble beginnings as a family-run eatery,
+            we have grown into a beloved destination for food lovers.
+          </h6>
+
+          <a href="/sign"><button class="btn btn-warning text-light fw-bold px-4 ms-2">Sign in</button></a> 
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- booking -->
+    <div class="row m-0 p-0">
+
+      <div class="col-md-6"></div>
+
+      <div class="col-md-6 p-5" style="background-color: #0F172B;">
+        <h4 class="text-warning fw-bold" style="font-variant: small-caps;"><i>Reservation</i></h4>
+        <h1 class="fw-bold text-light">Book A Table Online</h1>
+      </div>
+      
+    </div>
+
+  </body>
+</html>

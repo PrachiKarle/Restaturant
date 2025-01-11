@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <%- include('../cdn.ejs')%>
+  </head>
+  <body>
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-3">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          style="background-color: #191928"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin/service" class="nav-link text-info fw-bold"
+            >Services</a
+          >
+        </div>
+        <div
+          class="col-lg-10 col-md-8 col-12 p-4"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <a href="/admin/add_service"><button class="btn btn-warning text-light">Add Services</button></a>
+          
+          <table class="table table-hover table-bordered table-striped bg-light my-4">
+            
+            <thead>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Information</th>
+              <th>Image</th>
+            </thead>
+
+            <tbody>
+               <% data.map((val)=>{ %>
+                    <tr>
+                      <td><%= val.Id %></td>
+                      <td><%= val.serv_name %></td>
+                      <td><%= val.serv_info %></td>
+                      <td><img src="/uploads/<%= val.serv_img %>" height="60px" alt=""></td>
+                    </tr>
+               <%})%>
+            </tbody>
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
