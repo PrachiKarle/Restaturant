@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User - Admin</title>
+    <%- include('../cdn.ejs')%>
+  </head>
+  <body>
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-3">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          style="background-color: #191928"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin" class="nav-link text-light fw-bold my-3">Services</a>
+          <a href="/admin/team" class="nav-link text-light fw-bold my-3"
+            >Team</a
+          >
+          <a href="/admin/contact" class="nav-link text-light fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-light fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-warning fw-bold my-3"
+            >User Information</a
+          >
+          <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+          >Menu</a
+        >
+        </div>
+
+        <div
+          class="col-lg-10 col-md-8 col-12 p-4"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <!-- User informations -->
+          <div class="row m-0 p-2">
+            <button class="btn btn-warning text-light">User Information</button>
+
+            <table
+              class="table table-hover table-bordered table-striped bg-light my-4"
+            >
+              <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th></th>
+                <th></th>
+              </thead>
+
+              <tbody>
+                <% if(data.length==0){%>
+                <tr class="text-center">
+                  <td colspan="5">No Records</td>
+                </tr>
+                <%}%> <% data.map((val)=>{ %>
+                <tr>
+                  <td><%= val.user_id %></td>
+                  <td><%= val.user_name %></td>
+                  <td><%= val.user_email %></td>
+                  <td><%= val.user_pass %></td>
+               
+                  <td>
+                    <a
+                      href="/admin/delete_user/<%= val.user_id%>"
+                      onclick="return confirm('Are you sure ? ')"
+                    >
+                      <i class="fa fa-trash text-danger fw-bold"></i>
+                    </a>
+                  </td>
+
+                  <td>
+                    <a
+                      href="/admin/edit_user/<%= val.user_id%>"
+                      onclick="return confirm('Are you sure ? ')"
+                    >
+                      <i class="fa fa-edit text-success fw-bold"></i>
+                    </a>
+                  </td>
+                </tr>
+                <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

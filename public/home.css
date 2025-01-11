@@ -1,0 +1,37 @@
+#main_div {
+    background: url("images/about.jpg") no-repeat center center/cover;
+    background-size: 100% 100%;
+  }
+  #main_div1 {
+    background-color: #191928 !important;
+    opacity: 0.9;
+    height: 100%;
+  }
+  .active {
+    color: #ffc107 !important;
+  }
+  nav {
+    background-color: #191928 !important;
+    opacity: 0.9;
+  }
+  .div1 {
+    background: url("images/about1.jpg") no-repeat center center/cover;
+    background-size: 100% 100%;
+  }
+
+  .hoverClass {
+    background-color: white !important;
+    box-shadow: 0px 0px 5px 2px rgb(189, 188, 188) !important;
+    color: #191928 !important;
+  }
+
+ .hoverClass:hover {
+    background-color: #191928 !important;
+    box-shadow: none !important;
+    color: white !important;
+  }
+
+  #about img:hover {
+    transform: scale(0.9);
+  }
+

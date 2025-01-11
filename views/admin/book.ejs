@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Booking</title>
+    <%- include('../cdn.ejs')%>
+  </head>
+  <body>
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-3">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          style="background-color: #191928"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin" class="nav-link text-light fw-bold my-3"
+            >Services</a
+          >
+          <a href="/admin/team" class="nav-link text-light fw-bold my-3"
+            >Team</a
+          >
+          <a href="/admin/contact" class="nav-link text-light fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-warning fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-light fw-bold my-3"
+          >User Information</a
+        >
+        <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+        >Menu</a>
+        </div>
+
+        <div
+          class="col-lg-10 col-md-8 col-12 p-4"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <!-- booking -->
+          <div class="row m-0 p-2" id="book">
+            <button class="btn btn-warning text-light m-auto">
+              Booking User Information
+            </button>
+
+            <table
+              class="table table-hover table-bordered table-striped bg-light my-4"
+            >
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Booking Date</th>
+                  <th>Booking Time</th>
+                  <th>No of People</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% data3.map((val)=>{%>
+                    <tr>
+                        <td><%= val.Id%></td>
+                        <td><%= val.Name%></td>
+                        <td><%= val.Email%></td>
+                        <td><%= val.booking_date%></td>
+                        <td><%= val.booking_time%></td>
+                        <td><%= val.no%></td>
+                        <td>
+                            <a href="/admin/del_book/<%= val.Id%>"><button class="btn btn-danger">Cancel Booking</button></a>
+                        </td>
+                        <td>
+                            <a href="/admin/edit_book/<%= val.Id%>"><button class="btn btn-success">Edit Booking</button></a>
+                        </td>
+                    </tr>
+                <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

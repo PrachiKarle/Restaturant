@@ -7,10 +7,54 @@ var exe=require('../connection');
 
 // home page
 router.get('/',async(req,res)=>{
-    var sql=`select* from service`;
-    var data1=await exe(sql);
-    res.render('user/home.ejs',{data:data1});
+    //services
+    var sql1=`select* from service`;
+    var d1=await exe(sql1);
+
+    //team members
+    var sql2=`select* from team`;
+    var d2=await exe(sql2);
+    
+    const obj={data:d1, data1:d2};
+    res.render('user/home.ejs',obj);
 })
+
+
+
+//booking
+router.post('/booktable',async(req,res)=>{
+    if(req.session.user_id){
+        const {booking_name,booking_email,booking_date,booking_time,booking_no}=req.body;
+        var sql=`insert into booking(name,email,booking_date,booking_time,no) values('${booking_name}','${booking_email}','${booking_date}','${booking_time}','${booking_no}')`;
+        await exe(sql);
+        res.send(`<script>
+               alert("Table Booking Successfully");
+               location.href='/';
+            </script>`)
+    }
+    else{
+        res.redirect('/sign');
+    }
+})
+
+
+
+
+//contact
+router.post('/savecontact',async(req,res)=>{
+    if(req.session.user_id)
+    {
+         const {name,email,subject,msg}=req.body;
+         var sql=`insert into contact(Name,Email,Subject,Message) values('${name}','${email}','${subject}','${msg}')`;
+         await exe(sql);
+         res.redirect('/');
+    }
+    else{
+        res.redirect('/sign');
+    }
+})
+
+
 
 
 
@@ -48,12 +92,14 @@ router.get('/accept_otp',(req,res)=>{
 router.post('/verifyotp',(req,res)=>{
     if(req.body.user_otp==req.session.user_otp)
     {
+        req.session.user_id=req.session.user_loginId;
         res.redirect('/');
     }
     else{
         res.redirect('/accept_otp');
     }
 })
+
 
 
 //sign up 
