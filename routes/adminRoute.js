@@ -150,7 +150,46 @@ router.get("/book", async (req, res) => {
     res.redirect("/admin/login");
   }
 });
-
+//delete booking
+router.get("/del_book/:id",async(req,res)=>{
+  if(req.session.admin_id)
+    {
+       var id=req.params.id;
+       var sql=`delete from booking where id = '${id}'`;
+       await exe(sql);
+       res.redirect("/admin/book");
+    }
+    else {
+      res.redirect("/admin/login");
+    }
+})
+//edit booking
+router.get('/edit_book/:id',async(req,res)=>{
+    if(req.session.admin_id)
+    {
+        var id=req.params.id;
+        var sql=`select* from booking where id = '${id}'`;
+        var data1=await exe(sql);
+        const obj={data:data1[0]};
+        res.render('admin/edit_booking.ejs',obj);
+    }
+    else{
+      res.redirect("/admin/login");
+    }
+})
+// update
+router.post('/updatebooking',async(req,res)=>{
+     if(req.session.admin_id)
+    { 
+             const {id,booking_name,booking_email,booking_date,booking_time,booking_no}=req.body;
+             var sql=`update booking set name='${booking_name}', email='${booking_email}',booking_date='${booking_date}', booking_time='${booking_time}', no='${booking_no}' where id = '${id}'`;
+             await exe(sql);
+             res.redirect("/admin/book");
+      }
+    else{
+      res.redirect("/admin/login");
+    }
+})
 
 
 
@@ -167,6 +206,20 @@ router.get("/user", async (req, res) => {
     res.redirect("/admin/login");
   }
 });
+//delete user
+router.get("/delete_user/:id",async(req,res)=>{
+  if(req.session.admin_id)
+  {
+     var id=req.params.id;
+     var sql=`delete from user where user_id = '${id}'`;
+     await exe(sql);
+     res.redirect("/admin/user");
+  }
+  else {
+    res.redirect("/admin/login");
+  }
+})
+
 
 
 

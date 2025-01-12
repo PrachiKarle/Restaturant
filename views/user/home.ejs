@@ -248,7 +248,7 @@
           <div class="form-group my-3">
             <input
               type="date"
-              name="booking_date"
+              name="booking_date" min="<%=new Date().toISOString().slice(0,10)%>"
               class="form-control"
               required
             />

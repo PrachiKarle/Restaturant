@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Booking</title>
+    <%- include('../cdn.ejs')%>
+  </head>
+  <body>
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-3">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          style="background-color: #191928; height: 60vh"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin" class="nav-link text-light fw-bold my-3">Services</a>
+          <a href="/admin/team" class="nav-link text-light fw-bold my-3"
+            >Team</a
+          >
+          <a href="/admin/contact" class="nav-link text-light fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-warning fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-light fw-bold my-3"
+            >User Information</a
+          >
+          <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+            >Menu</a
+          >
+        </div>
+
+        <div
+          class="col-lg-10 col-md-8 col-12 p-4"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <!-- booking -->
+          <div class="row m-0 p-0" id="booking">
+            
+
+            <div class="col-12 m-0 p-5" style="background-color: #0f172b">
+              <h1 class="fw-bold text-light">Update Booking Information</h1>
+
+            
+              <form action="/admin/updatebooking" method="post" class="pt-4">
+                <input type="text" name="id" value="<%= data.id%>" hidden>
+                <div class="form-group my-3">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    name="booking_name" value="<%= data.name%>"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group my-3">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="booking_email" value="<%= data.email%>"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group my-3">
+                  <input
+                    type="date"
+                    name="booking_date" value="<%= new Date(data.booking_date).toLocaleDateString('en-CA') %>"
+                    class="form-control" min="<%=new Date().toISOString().slice(0,10)%>"
+                    required
+                  />
+                </div>
+                <div class="form-group my-3">
+                  <input
+                    type="time"
+                    name="booking_time" value="<%= data.booking_time%>"
+                    class="form-control"  
+                    required
+                  />
+                </div>
+                <div class="form-group my-3">
+                  <input
+                    type="number"
+                    placeholder="Number of People"
+                    name="booking_no" value="<%= data.no%>"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group text-center my-4">
+                  <button class="btn btn-warning text-light">
+                    Update Booking
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
