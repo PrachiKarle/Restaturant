@@ -1,2 +1,2 @@
 # Restaturant
-Restaturant website 
+Restaturant website using EJS, SQL, Node and Express
