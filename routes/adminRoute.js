@@ -1,6 +1,10 @@
+//express router
 var express = require("express");
 const router = express.Router();
 
+
+
+//import connection
 var exe = require("../connection");
 
 
@@ -22,37 +26,52 @@ router.get("/", async (req, res) => {
 
 
 
-
 //services
 
 // create- insert
 router.post("/saveservice", async (req, res) => {
-  const { serv_name, serv_info } = req.body;
+  if (req.session.admin_id) {
+    const { serv_name, serv_info } = req.body;
 
-  var file = req.files.serv_img;
-  var filename = new Date().getTime() + "_" + file.name;
-  file.mv("public/uploads/" + filename);
+    var file = req.files.serv_img;
+    var filename = new Date().getTime() + "_" + file.name;
+    file.mv("public/uploads/" + filename);
 
-  var sql = `insert into service(serv_name,serv_info,serv_img) values('${serv_name}','${serv_info}','${filename}')`;
-  await exe(sql);
-  res.redirect("/admin");
+    var sql = `insert into service(serv_name,serv_info,serv_img) values(?,?,?)`;
+    var values = [serv_name, serv_info, filename];
+    await exe(sql, values);
+    res.redirect("/admin");
+  } else {
+    res.redirect("/admin/login");
+  }
 });
+
 
 // delete
 router.get("/delete_serv/:id", async (req, res) => {
-  var id = req.params.id;
-  var sql = `delete from service where Id='${id}'`;
-  await exe(sql);
-  res.redirect("/admin");
-});
+  if (req.session.admin_id) {
+    var id = req.params.id;
+    var sql = `delete from service where Id=?`;
+    await exe(sql, [id]);
+    res.redirect("/admin");
+  } else {
+    res.redirect("/admin/login");
+  }
+})
+
 
 // update
 router.get("/edit_serv/:id", async (req, res) => {
-  var id = req.params.id;
-  var sql = `select* from service where Id='${id}'`;
-  var data1 = await exe(sql);
-  res.render("admin/edit_service.ejs", { data: data1[0] });
+  if (req.session.admin_id) {
+    var id = req.params.id;
+    var sql = `select* from service where Id=?`;
+    var data1 = await exe(sql, [id]);
+    res.render("admin/edit_service.ejs", { data: data1[0] });
+  } else {
+    res.redirect("/admin/login");
+  }
 });
+
 
 
 
@@ -72,16 +91,22 @@ router.get("/team", async (req, res) => {
 });
 
 router.post("/savemember", async (req, res) => {
+  if (req.session.admin_id) {
   const { name, role } = req.body;
   //profile img
   var file = req.files.profile;
   var filename = new Date().getTime() + "_" + file.name;
   file.mv("public/uploads/" + filename);
 
-  var sql = `insert into team(Name,Role,Profile) values('${name}','${role}','${filename}')`;
-  await exe(sql);
+  var sql = `insert into team(Name,Role,Profile) values(?,?,?)`;
+  await exe(sql, [name, role, filename]);
   res.redirect("/admin");
+  } else {
+     res.redirect("/admin/login");
+  }
 });
+
+
 
 
 
@@ -89,23 +114,27 @@ router.post("/savemember", async (req, res) => {
 //contact
 router.get("/contact", async (req, res) => {
   if (req.session.admin_id) {
-    //contact
     var sql3 = `select* from contact`;
     var d3 = await exe(sql3);
     const obj = { data2: d3 };
     res.render("admin/contact.ejs", obj);
-  } 
-  else {
+  } else {
     res.redirect("/admin/login");
   }
 });
 // delete
 router.get("/contact_del/:id", async (req, res) => {
-  var id = req.params.id;
-  var sql = `delete from contact where Id='${id}'`;
-  await exe(sql);
-  res.redirect("/admin");
+  if (req.session.admin_id) {
+    var id = req.params.id;
+    var sql = `delete from contact where Id=?`;
+    await exe(sql, [id]);
+    res.redirect("/admin");
+  } else {
+     res.redirect("/admin/login");
+  }
 });
+
+
 
 
 
@@ -113,30 +142,126 @@ router.get("/contact_del/:id", async (req, res) => {
 //booking
 router.get("/book", async (req, res) => {
   if (req.session.admin_id) {
-  var sql = `select* from booking`;
-  var data = await exe(sql);
-  const obj = { data3: data };
-  res.render("admin/book.ejs", obj);
-  }
-  else{
+    var sql = `select* from booking`;
+    var data = await exe(sql);
+    const obj = { data3: data };
+    res.render("admin/book.ejs", obj);
+  } else {
     res.redirect("/admin/login");
   }
 });
 
 
+
+
+
+
 //user information
-router.get("/user",async(req,res)=>{
-  if(req.session.admin_id)
-  {
-       var sql=`select* from user`;
-       var d=await exe(sql);
-       const obj={data:d};
-       res.render('admin/user.ejs',obj);
+router.get("/user", async (req, res) => {
+  if (req.session.admin_id) {
+    var sql = `select* from user`;
+    var d = await exe(sql);
+    const obj = { data: d };
+    res.render("admin/user.ejs", obj);
+  } else {
+    res.redirect("/admin/login");
   }
-  else{
-    res.redirect('/admin/login');
+});
+
+
+
+
+
+
+
+//menu
+
+router.get("/menu", async (req, res) => {
+  if (req.session.admin_id) {
+    //starter
+    var sql1 = `select* from starter`;
+    var d1 = await exe(sql1);
+
+    //main menu
+    var sql2 = `select* from mainmenu`;
+    var d2 = await exe(sql2);
+
+    //desserts
+    var sql3 = `select* from desserts`;
+    var d3 = await exe(sql3);
+
+    const obj = { starter: d1, mainmenu: d2, desserts: d3 };
+    res.render("admin/menu.ejs", obj);
+
+  } else {
+    res.redirect("/admin/login");
   }
-})
+});
+
+// insert
+router.post("/addmenu", async (req, res) => {
+  if (req.session.admin_id) {
+  const { menu_name, menu_price, menu_category } = req.body;
+
+  var file = req.files.menu_img;
+  var filename = new Date().getTime() + "_" + file.name;
+  file.mv("public/uploads/" + filename);
+
+  var sql = `insert into ${menu_category}(menu_name,menu_price,menu_img) values(?,?,?)`;
+  await exe(sql, [menu_name, menu_price, filename]);
+  res.redirect("/admin/menu");
+
+  } else {
+    res.redirect("/admin/login");
+  }
+});
+
+//delete
+router.get("/del_menu/:id/:category", async (req, res) => {
+  if (req.session.admin_id) {
+    var id = req.params.id;
+    var categ = req.params.category;
+    var sql = `delete from ${categ} where Id=?`;
+    await exe(sql, [id]);
+    res.redirect("/admin/menu");
+  } else {
+    res.redirect("/admin/login");
+  }
+});
+
+// update
+router.get("/edit_menu/:id/:category", async (req, res) => {
+  if (req.session.admin_id) {
+    var id = req.params.id;
+    var categ = req.params.category;
+
+    var sql = `select* from ${categ} where Id=?`;
+    var d = await exe(sql, [id]);
+    res.render("admin/edit_menu.ejs", { data: d[0], category: categ });
+  } else {
+    res.redirect("/admin/login");
+  }
+});
+
+router.post("/updatemenu", async (req, res) => {
+  if (req.session.admin_id) {
+    const { menu_id, menu_name, menu_category, menu_price } = req.body;
+
+    if (req.files) {
+      var file = req.files.menu_img;
+      var filename = new Date().getTime() + "_" + file.name;
+      file.mv("public/uploads/" + filename);
+      var sql = `update ${menu_category} set menu_img=? where Id=?`;
+      await exe(sql, [filename, menu_id]);
+    }
+
+    var sql = `update ${menu_category} set menu_name=?, menu_price=? where Id=?`;
+    await exe(sql, [menu_name, menu_price, menu_id]);
+    res.redirect("/admin/menu");
+  }  else {
+    res.redirect("/admin/login");
+  }
+});
 
 
 
@@ -145,14 +270,17 @@ router.get("/user",async(req,res)=>{
 
 // admin login
 var sendOTP = require("../Email.js");
+
 router.get("/login", (req, res) => {
   res.render("admin/login.ejs");
 });
 
+//login
 router.post("/loginadmin", async (req, res) => {
+
   const { admin_email, admin_pass } = req.body;
-  var sql = `select* from admin where admin_email='${admin_email}' AND admin_pass='${admin_pass}'`;
-  var data = await exe(sql);
+  var sql = `select* from admin where admin_email=? AND admin_pass=?`;
+  var data = await exe(sql, [admin_email, admin_pass]);
 
   if (data.length > 0) {
     req.session.login_id = data[0].Id;
@@ -162,10 +290,13 @@ router.post("/loginadmin", async (req, res) => {
 
     sendOTP(admin_email, data[0].admin_name, otp);
     res.redirect("/admin/accept_otp");
+
   } else {
     res.redirect("/admin/login");
   }
 });
+
+//accept otp
 router.get("/accept_otp", (req, res) => {
   if (req.session.login_id) {
     res.render("admin/acceptOTP.ejs");
@@ -173,6 +304,7 @@ router.get("/accept_otp", (req, res) => {
     res.redirect("/admin/login");
   }
 });
+//verify otp
 router.post("/verify_otp", (req, res) => {
   if (req.session.admin_otp == req.body.admin_otp) {
     req.session.admin_id = req.session.login_id;
@@ -181,5 +313,7 @@ router.post("/verify_otp", (req, res) => {
     res.redirect("/admin/login");
   }
 });
+
+
 
 module.exports = router;

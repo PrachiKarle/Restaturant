@@ -67,12 +67,16 @@
             <li class="nav-item">
               <a href="#contact" class="nav-link text-light">Contact</a>
             </li>
-            <li class="nav-item">
-              <a href="/sign"
-                ><button class="btn btn-warning text-light fw-bold px-4 ms-2">
+            <li class="nav-item mx-2">
+              <% if(usernm=="User"){%>
+              <a href="/sign">
+                <button class="btn btn-warning text-light fw-bold px-4 ms-2">
                   Sign in
-                </button></a
-              >
+                </button>
+              </a>
+              <%} else{%>
+                  <h6>Hello,<br> <%=usernm%></h6>
+              <%}%>
             </li>
           </ul>
         </div>
@@ -211,6 +215,7 @@
 
     <!-- booking -->
     <div class="row m-0 p-0" id="booking">
+
       <div class="col-md-6 m-0 p-0">
         <img src="images/booking.webp" height="100%" width="100%" alt="" />
       </div>
@@ -265,6 +270,7 @@
               required
             />
           </div>
+          
           <div class="form-group text-center my-4">
             <button class="btn btn-warning text-light">Book A Table</button>
           </div>
@@ -321,7 +327,6 @@
           ></iframe>
         </div>
 
-
         <div class="col-md-6 col-12 p-2 px-4">
           <form action="/savecontact" method="post">
             <div class="form-group my-3">
@@ -329,7 +334,8 @@
                 type="text"
                 name="name"
                 placeholder="Name"
-                class="form-control" required
+                class="form-control"
+                required
               />
             </div>
             <div class="form-group my-3">
@@ -337,7 +343,8 @@
                 type="text"
                 name="email"
                 placeholder="Email"
-                class="form-control" required
+                class="form-control"
+                required
               />
             </div>
             <div class="form-group my-3">
@@ -345,14 +352,16 @@
                 type="text"
                 name="subject"
                 placeholder="Subject"
-                class="form-control" required
+                class="form-control"
+                required
               />
             </div>
             <div class="form-group my-3">
               <textarea
                 name="msg"
                 placeholder="Message"
-                class="form-control" required
+                class="form-control"
+                required
               ></textarea>
             </div>
             <button class="btn btn-warning text-center text-light">
@@ -363,84 +372,88 @@
       </div>
     </div>
 
-
     <!-- footer -->
-      <div class="row m-0 p-3 pe-3" style= "background-color: #191928; ">
-        <div class="col-12">
-          <div class="row m-0 p-0">
-            <!--  Company  -->
-            <div class="col-lg-3 col-md-6 col-12">
-              <ul class="my-2 text-light" style="list-style-type: none">
-                <li class="text-warning fw-bold h5"style="font-variant: small-caps;">Company</li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> About Us
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> Contact Us
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> Reservation
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> Privacy Policy
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> Terms & Condition
-                </li>
-              </ul>
-            </div>
-
-            <!-- contact  -->
-            <div class="col-lg-3 col-md-6 col-12">
-              <ul class="my-2 text-light" style=" list-style-type: none">
-                <li class="text-warning fw-bold h5" style="font-variant: small-caps;">Contact</li>
-                <li>
-                <i class="bi bi-geo-alt fw-bold me-2"></i> 123 Street, New York, USA
-                </li>
-                <li>
-                  <i class="bi bi-telephone-fill fw-bold me-2"></i> +012 345 67890
-                </li>
-                <li>
-                  <i class="bi bi-envelope fw-bold me-2"></i> info@restaron.in
-                </li>
-              </ul>
-            </div>
-
-            <!--  opening  -->
-            <div class="col-lg-3 col-md-6 col-12">
-              <ul class="my-2 text-light" style=" list-style-type: none">
-                <li class="text-warning fw-bold h5" style="font-variant: small-caps;">Opening</li>
-                <li class="h6 fw-bold">Monday - Saturday</li>
-                <li class="h6 fw-normal">09AM - 09PM</li>
-                <li class="h6 fw-bold">Sunday</li>
-                <li class="h6 fw-normal">10AM - 08PM</li>
-              </ul>
-            </div>
-
-            <!--  Newsletter -->
-            <div class="col-lg-3 col-md-6 col-12">
-              <b class="text-warning fw-bold h5" style="font-variant: small-caps;">Newsletter</b> <br />
-              <b class="text-light fw-bold">
-                Dolor amet sit justo amet elitr clita ipsum elitr est.
-              </b>
-              <form action="" class="d-flex mt-3">
-                <input type="email" placeholder="Your Mail" required />
-                <button type="submit" class="btn btn-warning text-light">
-                  Sign up
-                </button>
-              </form>
-            </div>
+    <div class="row m-0 p-3 pe-3" style="background-color: #191928">
+      <div class="col-12">
+        <div class="row m-0 p-0">
+          <!--  Company  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Company
+              </li>
+              <li><i class="bi bi-chevron-right"></i> About Us</li>
+              <li><i class="bi bi-chevron-right"></i> Contact Us</li>
+              <li><i class="bi bi-chevron-right"></i> Reservation</li>
+              <li><i class="bi bi-chevron-right"></i> Privacy Policy</li>
+              <li><i class="bi bi-chevron-right"></i> Terms & Condition</li>
+            </ul>
           </div>
-   
-          <div class="row m-0 py-3 text-center">
-           
-            <h6 class="text-light">
-              © Copyright Restoran, All Right Reserved
-            </h6>
-           
+
+          <!-- contact  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Contact
+              </li>
+              <li>
+                <i class="bi bi-geo-alt fw-bold me-2"></i> 123 Street, New York,
+                USA
+              </li>
+              <li>
+                <i class="bi bi-telephone-fill fw-bold me-2"></i> +012 345 67890
+              </li>
+              <li>
+                <i class="bi bi-envelope fw-bold me-2"></i> info@restaron.in
+              </li>
+            </ul>
+          </div>
+
+          <!--  opening  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Opening
+              </li>
+              <li class="h6 fw-bold">Monday - Saturday</li>
+              <li class="h6 fw-normal">09AM - 09PM</li>
+              <li class="h6 fw-bold">Sunday</li>
+              <li class="h6 fw-normal">10AM - 08PM</li>
+            </ul>
+          </div>
+
+          <!--  Newsletter -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <b class="text-warning fw-bold h5" style="font-variant: small-caps"
+              >Newsletter</b
+            >
+            <br />
+            <b class="text-light fw-bold">
+              Dolor amet sit justo amet elitr clita ipsum elitr est.
+            </b>
+            <form action="" class="d-flex mt-3">
+              <input type="email" placeholder="Your Mail" required />
+              <button type="submit" class="btn btn-warning text-light">
+                Sign up
+              </button>
+            </form>
           </div>
         </div>
+
+        <div class="row m-0 py-3 text-center">
+          <h6 class="text-light">© Copyright Restoran, All Right Reserved</h6>
+        </div>
       </div>
+    </div>
     
   </body>
 </html>
