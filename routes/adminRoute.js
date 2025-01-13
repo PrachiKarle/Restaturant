@@ -128,7 +128,7 @@ router.get("/contact_del/:id", async (req, res) => {
     var id = req.params.id;
     var sql = `delete from contact where Id=?`;
     await exe(sql, [id]);
-    res.redirect("/admin");
+    res.redirect("/admin/contact");
   } else {
      res.redirect("/admin/login");
   }
