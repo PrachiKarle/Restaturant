@@ -26,6 +26,8 @@ app.use('/',userRoute);
 
 //admin routes
 var adminRoute=require('./routes/adminRoute');
+
+
 app.use('/admin',adminRoute);
 
 
@@ -34,3 +36,5 @@ const PORT=3000 || process.env.PORT;
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`)
 })
+
+// module.exports.handler=ServerlessHttp(app);

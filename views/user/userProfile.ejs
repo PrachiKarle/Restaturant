@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <%- include('../cdn.ejs') %>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="div1">
+      <nav class="navbar navbar-expand-lg p-3 text-light">
+        <a href="#" class="navbar-brand text-warning fw-bold mx-5 display-3"
+          >Restoran</a
+        >
+
+        <button
+          class="navbar-toggler bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse me-5" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/" class="nav-link text-light">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link text-light">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#service" class="nav-link text-light">Service</a>
+            </li>
+            <li class="nav-item">
+              <a href="/menu" class="nav-link text-light">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a href="#booking" class="nav-link text-light">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link text-light">Contact</a>
+            </li>
+            <li class="nav-item mx-2">
+              <% if(usernm=="User"){%>
+              <a href="/sign">
+                <button class="btn btn-warning text-light fw-bold px-4 ms-2">
+                  Sign in
+                </button>
+              </a>
+              <%} else{%>
+              <h6>
+                Hello,<br /><a href="/userProfile" class="text-light fw-bold">
+                  <%=usernm%>
+                </a>
+              </h6>
+              <%}%>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container-fluid m-0 p-0" id="main_div">
+      <div class="row m-0 p-4" id="main_div1">
+         <div class="col-md-4 m-0 p-3">
+
+         </div>
+         <div class="col-md-8"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,3 +1,5 @@
 /node_modules
 /Email.js
 /Email1.js
+# Local Netlify folder
+.netlify
