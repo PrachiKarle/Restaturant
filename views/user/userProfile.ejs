@@ -62,18 +62,215 @@
               </h6>
               <%}%>
             </li>
+            <li class="nav-item">
+              <a href="/admin" class="nav-link text-light">
+                <i class="bi bi-person-fill"></i>
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
     </div>
 
-    <div class="container-fluid m-0 p-0" id="main_div">
-      <div class="row m-0 p-4" id="main_div1">
-         <div class="col-md-4 m-0 p-3">
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-5">
+        <div
+          class="col-lg-4 col-12 m-0 p-4 text-light"
+          style=" background-color:#0F172B"
+        >
+          <form action="/edit_user" method="post">
+            <h4 class="text-center fw-bold text-warning my-4">Edit Information</h4>
+            <input
+              type="text"
+              value="<%= data3.user_id%>"
+              name="user_id"
+              hidden
+            />
+            <div class="form-group my-3">
+              <label for="" class="text-light">Name</label>
+              <input
+                type="text"
+                name="user_name"
+                class="form-control"
+                value="<%= data3.user_name%>"
+                required
+              />
+            </div>
+            <div class="form-group my-3">
+              <label for="" class="text-light">Email</label>
+              <input
+                type="email"
+                name="user_email"
+                class="form-control"
+                value="<%= data3.user_email%>"
+                required
+              />
+            </div>
+            <div class="form-group my-3">
+              <label for="" class="text-light">Password</label>
+              <input
+                type="text"
+                name="user_pass"
+                class="form-control"
+                value="<%= data3.user_pass%>" id="pass"
+                required
+              />
+            </div>
 
-         </div>
-         <div class="col-md-8"></div>
+            <div class="form-group my-4 text-center">
+              <button class="btn btn-warning text-light">Update Information</button>
+            </div>
+          </form>
+          <div class="btn-group">
+            <a href="/logout" class="mx-5"
+              ><button class="btn btn-light">Logout</button></a
+            >
+            <a href="/admin/delete_user/<%= data3.user_id%>" class="mx-5"
+              ><button class="btn btn-danger">Delete Account</button>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-8 col-12 m-0 px-5 py-3 text-light">
+          <div class="row m-0 px-5 py-3 bg-warning">
+            <h4 class="text-light fw-bold mb-5 mt-3 text-center">Booking Details</h4>
+
+            <% data1.map((val,id)=>{%>
+            <div class="col-md-6 col-12" >
+              <div class="card m-0 p-0 text-light" style=" background-color:#0F172B">
+                <div class="card-body p-3">
+                  <h6>Name: <b><%=val.name%></b></h6>
+                  <h6>Email: <b><%=val.email%></b></h6>
+                  <h6>Booking Date: <b><%= val.booking_date.toLocaleDateString()%></b></h6>
+                  <h6>Booking Time: <b><%= val.booking_time%></b></h6>
+                  <h6>Number of Customer: <b><%= val.no %></b></h6>
+                </div>
+                <div class="card-footer p-3 text-center">
+                  <a href="/del_book/<%= val.Id%>"
+                    ><button class="btn btn-danger">Delete Booking</button>
+                  </a>
+                  <a href="/edit_book/<%= val.Id%>">
+                    <button class="btn btn-success">Edit Booking</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <%}) %>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="row m-0 p-0 my-3">
+      <div class="col-md-8 col-11 m-auto p-4 bg-warning">
+          <h4 class="text-light fw-bold mb-5 mt-3 text-center">Contact Details</h4>
+          <div class="row m-0 px-5 py-3">
+            <% data2.map((val,id)=>{%>
+              <div class="col-md-6 col-12" >
+                <div class="card m-0 p-0 text-light" style=" background-color:#0F172B">
+                  <div class="card-body p-3">
+                    <h6>Name: <b><%= val.Name%></b></h6>
+                    <h6>Email: <b><%= val.Email%></b></h6>
+                    <h6>Subject: <b><%= val.Subject%></b></h6>
+                    <h6>Message: <b><%= val.Message%></b></h6>
+                  </div>
+                  <div class="card-footer p-3 text-center">
+                    <a href="/contact_del/<%= val.Id%>">
+                      <button class="btn btn-danger">Delete Contact</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <%}) %>
+          </div>
+      </div>
+
+
+    </div>
+  <!-- footer -->
+    <div class="row m-0 p-3 pe-3" style="background-color: #191928">
+      <div class="col-12">
+        <div class="row m-0 p-0">
+          <!--  Company  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Company
+              </li>
+              <li><i class="bi bi-chevron-right"></i> About Us</li>
+              <li><i class="bi bi-chevron-right"></i> Contact Us</li>
+              <li><i class="bi bi-chevron-right"></i> Reservation</li>
+              <li><i class="bi bi-chevron-right"></i> Privacy Policy</li>
+              <li><i class="bi bi-chevron-right"></i> Terms & Condition</li>
+            </ul>
+          </div>
+
+          <!-- contact  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Contact
+              </li>
+              <li>
+                <i class="bi bi-geo-alt fw-bold me-2"></i> 123 Street, New York,
+                USA
+              </li>
+              <li>
+                <i class="bi bi-telephone-fill fw-bold me-2"></i> +012 345 67890
+              </li>
+              <li>
+                <i class="bi bi-envelope fw-bold me-2"></i> info@restaron.in
+              </li>
+            </ul>
+          </div>
+
+          <!--  opening  -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <ul class="my-2 text-light" style="list-style-type: none">
+              <li
+                class="text-warning fw-bold h5"
+                style="font-variant: small-caps"
+              >
+                Opening
+              </li>
+              <li class="h6 fw-bold">Monday - Saturday</li>
+              <li class="h6 fw-normal">09AM - 09PM</li>
+              <li class="h6 fw-bold">Sunday</li>
+              <li class="h6 fw-normal">10AM - 08PM</li>
+            </ul>
+          </div>
+
+          <!--  Newsletter -->
+          <div class="col-lg-3 col-md-6 col-12">
+            <b class="text-warning fw-bold h5" style="font-variant: small-caps"
+              >Newsletter</b
+            >
+            <br />
+            <b class="text-light fw-bold">
+              Dolor amet sit justo amet elitr clita ipsum elitr est.
+            </b>
+            <form action="" class="d-flex mt-3">
+              <input type="email" placeholder="Your Mail" required />
+              <button type="submit" class="btn btn-warning text-light">
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row m-0 py-3 text-center">
+          <h6 class="text-light">© Copyright Restoran, All Right Reserved</h6>
+        </div>
+      </div>
+    </div>
+    
   </body>
+
+  
+
 </html>

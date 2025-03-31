@@ -8,16 +8,14 @@
   </head>
   <body>
     <div class="container-fluid m-0 p-0">
-      <div class="row m-0 p-3">
+      <div class="row m-0 p-0">
         <div
-          class="col-lg-2 col-md-4 col-12 p-3 text-center"
-          style="background-color: #191928;height:60vh"
+          class="col-lg-2 col-md-4 col-12 p-5 text-center"
+          style="background-color: #191928; height: 60vh"
         >
           <h3 class="text-warning fw-bold mb-4">Restoran</h3>
 
-          <a href="/admin" class="nav-link text-light fw-bold my-3"
-            >Services</a
-          >
+          <a href="/admin" class="nav-link text-light fw-bold my-3">Services</a>
           <a href="/admin/team" class="nav-link text-light fw-bold my-3"
             >Team</a
           >
@@ -29,14 +27,18 @@
             >Booking Details</a
           >
           <a href="/admin/user" class="nav-link text-light fw-bold my-3"
-          >User Information</a
-        >
-        <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
-        >Menu</a>
+            >User Information</a
+          >
+          <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+            >Menu</a
+          >
+          <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+            >Logout</a
+          >
         </div>
 
         <div
-          class="col-lg-10 col-md-8 col-12 p-4"
+          class="col-lg-10 col-md-8 col-12 p-5"
           style="background-color: #191928; border-left: 10px solid white"
         >
           <!-- booking -->
@@ -51,32 +53,34 @@
               <thead>
                 <tr>
                   <th>Id</th>
+                  <th>User Id</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Booking Date</th>
                   <th>Booking Time</th>
                   <th>No of People</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
 
               <tbody>
                 <% data3.map((val)=>{%>
-                    <tr>
-                        <td><%= val.id%></td>
-                        <td><%= val.name%></td>
-                        <td><%= val.email%></td>
-                        <td><%= new Date( val.booking_date).toLocaleDateString() %></td>
-                        <td><%= val.booking_time%></td>
-                        <td><%= val.no%></td>
-                        <td>
-                            <a href="/admin/del_book/<%= val.id%>"><i class="fa fa-trash text-danger fw-bold"></i></a>
-                        </td>
-                        <td>
-                          <a href="/admin/edit_book/<%= val.id%>"><i class="fa fa-edit text-success fw-bold"></i></a>
-                      </td>
-                    </tr>
+                <tr>
+                  <td><%= val.Id%></td>
+                  <td><%= val.user_id%></td>
+                  <td><%= val.name%></td>
+                  <td><%= val.email%></td>
+                  <td>
+                    <%= new Date( val.booking_date).toLocaleDateString() %>
+                  </td>
+                  <td><%= val.booking_time%></td>
+                  <td><%= val.no%></td>
+                  <td>
+                    <a href="/admin/del_book/<%= val.Id%>"
+                      ><i class="fa fa-trash text-danger fw-bold"></i
+                    ></a>
+                  </td>
+                </tr>
                 <%})%>
               </tbody>
             </table>

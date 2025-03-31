@@ -4,7 +4,7 @@ var conn = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "restoran",
+  database: "restaturant",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

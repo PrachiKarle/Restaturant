@@ -31,7 +31,7 @@
     <!-- navbar -->
     <div class="div1">
       <nav class="navbar navbar-expand-lg p-3 text-light">
-        <a href="#" class="navbar-brand text-warning fw-bold mx-5 display-3"
+        <a href="#" class="navbar-brand text-warning fw-bold mx-5 display-2"
           >Restoran</a
         >
 
@@ -75,15 +75,24 @@
                 </button>
               </a>
               <%} else{%>
-                  <h6>Hello,<br><a href="/userProfile" class="text-light fw-bold"> <%=usernm%> </a> </h6>
+              <h6>
+                Hello,<br /><a href="/userProfile" class="text-light fw-bold">
+                  <%=usernm%>
+                </a>
+              </h6>
               <%}%>
+            </li>
+            <li class="nav-item">
+              <a href="/admin" class="nav-link text-light">
+                <i class="bi bi-person-fill"></i>
+              </a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
 
-    <!-- home page --> 
+    <!-- home page -->
     <div class="container-fluid m-0 p-0" id="main_div">
       <div class="row m-0 p-4" id="main_div1">
         <div class="col-md-6 col-12 p-5">
@@ -129,7 +138,7 @@
       <div class="row m-0 p-4">
         <% data.map((val)=>{ %>
         <div class="col-md-3 p-2">
-          <div class="w-100 p-2 hoverClass">
+          <div class="w-100 p-4 hoverClass">
             <img src="/uploads/<%= val.serv_img%>" height="60px" />
             <h5 class="my-3"><%= val.serv_name%></h5>
             <p><%= val.serv_info%></p>
@@ -215,7 +224,6 @@
 
     <!-- booking -->
     <div class="row m-0 p-0" id="booking">
-
       <div class="col-md-6 m-0 p-0">
         <img src="images/booking.webp" height="100%" width="100%" alt="" />
       </div>
@@ -248,7 +256,8 @@
           <div class="form-group my-3">
             <input
               type="date"
-              name="booking_date" min="<%=new Date().toISOString().slice(0,10)%>"
+              name="booking_date"
+              min="<%=new Date().toISOString().slice(0,10)%>"
               class="form-control"
               required
             />
@@ -270,7 +279,7 @@
               required
             />
           </div>
-          
+
           <div class="form-group text-center my-4">
             <button class="btn btn-warning text-light">Book A Table</button>
           </div>
@@ -454,6 +463,5 @@
         </div>
       </div>
     </div>
-    
   </body>
 </html>

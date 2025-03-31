@@ -7,17 +7,36 @@
     <%- include('../cdn.ejs')%>
   </head>
   <body>
-
     <div class="container-fluid m-0 p-0">
       <div class="row m-0 p-3">
-
         <div
           class="col-lg-2 col-md-4 col-12 p-3 text-center"
-          style="background-color: #191928"
+          style="background-color: #191928; height: 60vh"
         >
           <h3 class="text-warning fw-bold mb-4">Restoran</h3>
 
-          <a href="#service" class="nav-link text-info fw-bold">Services</a>
+          <a href="/admin" class="nav-link text-warning fw-bold my-3"
+            >Services</a
+          >
+          <a href="/admin/team" class="nav-link text-light fw-bold my-3"
+            >Team</a
+          >
+          <a href="/admin/contact" class="nav-link text-light fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-light fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-light fw-bold my-3"
+            >User Information</a
+          >
+          <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+            >Menu</a
+          >
+          <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+            >Logout</a
+          >
         </div>
 
         <div
@@ -25,12 +44,15 @@
           style="background-color: #191928; border-left: 10px solid white"
         >
           <div class="row m-0 p-0" id="service">
-            <h1 class="text-warning text-center mb-5 fw-bold">Update Services</h1>
+            <h1 class="text-warning text-center mb-5 fw-bold">
+              Update Services
+            </h1>
             <form
               action="/admin/updateservice"
               method="post"
               enctype="multipart/form-data"
             >
+              <input type="text" name="serv_id" value="<%= data.Id%>" hidden />
               <div class="form-group my-3 text-light">
                 <label for="">Update Service Name</label>
                 <input
@@ -38,7 +60,6 @@
                   name="serv_name"
                   class="form-control"
                   value="<%= data.serv_name %>"
-                  required
                 />
               </div>
               <div class="form-group my-3 text-light">
@@ -48,7 +69,6 @@
                   name="serv_info"
                   class="form-control"
                   value="<%= data.serv_info%>"
-                  required
                 />
               </div>
               <div class="form-group my-3 text-light">
@@ -57,10 +77,12 @@
                   type="file"
                   name="serv_img"
                   class="form-control mb-3"
-                  required
+                  value="<%= data.serv_img%>"
                 />
                 <a href="/uploads/<%= data.serv_img%>">
-                    <button type="button" class="btn btn-info">View Document</button>
+                  <button type="button" class="btn btn-info">
+                    View Document
+                  </button>
                 </a>
               </div>
 

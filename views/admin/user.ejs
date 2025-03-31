@@ -8,9 +8,9 @@
   </head>
   <body>
     <div class="container-fluid m-0 p-0">
-      <div class="row m-0 p-3">
+      <div class="row m-0 p-0">
         <div
-          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          class="col-lg-2 col-md-4 col-12 p-5 text-center"
           style="background-color: #191928;height:60vh"
         >
           <h3 class="text-warning fw-bold mb-4">Restoran</h3>
@@ -32,10 +32,13 @@
           <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
           >Menu</a
         >
+        <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+        >Logout</a>
         </div>
+       
 
         <div
-          class="col-lg-10 col-md-8 col-12 p-4"
+          class="col-lg-10 col-md-8 col-12 p-5"
           style="background-color: #191928; border-left: 10px solid white"
         >
           <!-- User informations -->
@@ -51,7 +54,6 @@
                 <th>Email</th>
                 <th>Password</th>
                 <th></th>
-                <th></th>
               </thead>
 
               <tbody>
@@ -59,19 +61,16 @@
                 <tr class="text-center">
                   <td colspan="5">No Records</td>
                 </tr>
-                <%}%> <% data.map((val)=>{ %>
+                <%}%> 
+                <% data.map((val)=>{ %>
                 <tr>
                   <td><%= val.user_id %></td>
                   <td><%= val.user_name %></td>
                   <td><%= val.user_email %></td>
                   <td><%= val.user_pass %></td>
-               
                   <td>
-                    <a
-                      href="/admin/delete_user/<%= val.user_id%>"
-                      onclick="return confirm('Are you sure ? ')"
-                    >
-                      <i class="fa fa-trash text-danger fw-bold"></i>
+                    <a href="/admin/delete_user/<%= val.user_id %>">
+                      <i class="fa fa-trash fw-bold text-danger"></i>
                     </a>
                   </td>
                 </tr>

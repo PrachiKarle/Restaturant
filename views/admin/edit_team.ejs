@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <%- include('../cdn.ejs')%>
+  </head>
+  <body>
+    <div class="container-fluid m-0 p-0">
+      <div class="row m-0 p-3">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-3 text-center"
+          style="background-color: #191928; height: 60vh"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin" class="nav-link text-light fw-bold my-3">Services</a>
+          <a href="/admin/team" class="nav-link text-warning fw-bold my-3"
+            >Team</a
+          >
+          <a href="/admin/contact" class="nav-link text-light fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-light fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-light fw-bold my-3"
+            >User Information</a
+          >
+          <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
+            >Menu</a
+          >
+          <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+            >Logout</a
+          >
+        </div>
+
+        <div
+          class="col-lg-10 col-md-8 col-12 p-5"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <div class="row m-0 p-0" id="service">
+            <h1 class="text-warning text-center mb-5 fw-bold">Update team</h1>
+            <form
+              action="/admin/updateteam"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <input type="text" name="id" value="<%= data.Id%>" hidden />
+              <div class="form-group my-3 text-light">
+                <label for="">Update Name</label>
+                <input
+                  type="text"
+                  name="t_name"
+                  class="form-control"
+                  value="<%= data.Name %>"
+                />
+              </div>
+              <div class="form-group my-3 text-light">
+                <label for="">Update Role</label>
+                <input
+                  type="text"
+                  name="t_role"
+                  class="form-control"
+                  value="<%= data.Role%>"
+                />
+              </div>
+              <div class="form-group my-3 text-light">
+                <label for="">Update Profile</label>
+                <input
+                  type="file"
+                  name="t_img"
+                  class="form-control mb-3"
+                  value="<%= data.Profile%>"
+                />
+                <a href="/uploads/<%= data.Profile%>">
+                  <button type="button" class="btn btn-info">
+                    View Document
+                  </button>
+                </a>
+              </div>
+
+              <div class="form-group mt-5 text-light text-center">
+                <button class="btn btn-warning text-light m-auto">
+                  Update Service
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

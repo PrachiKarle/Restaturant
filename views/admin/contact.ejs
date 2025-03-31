@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Contact</title>
     <%- include('../cdn.ejs')%>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid m-0 p-0">
-        <div class="row m-0 p-3">
-          <div
-            class="col-lg-2 col-md-4 col-12 p-3 text-center"
-            style="background-color: #191928;height:60vh"
+      <div class="row m-0 p-0">
+        <div
+          class="col-lg-2 col-md-4 col-12 p-5 text-center"
+          style="background-color: #191928; height: 60vh"
+        >
+          <h3 class="text-warning fw-bold mb-4">Restoran</h3>
+
+          <a href="/admin" class="nav-link text-light fw-bold my-3">Services</a>
+          <a href="/admin/team" class="nav-link text-light fw-bold my-3"
+            >Team</a
           >
-            <h3 class="text-warning fw-bold mb-4">Restoran</h3>
-  
-            <a href="/admin" class="nav-link text-light fw-bold my-3"
-              >Services</a
-            >
-            <a href="/admin/team" class="nav-link text-light fw-bold my-3">Team</a>
-            <a href="/admin/contact" class="nav-link text-warning fw-bold my-3">Contact</a>
-  
-            <a href="/admin/book" class="nav-link text-light fw-bold my-3">Booking Details</a>
-            <a href="/admin/user" class="nav-link text-light fw-bold my-3"
+          <a href="/admin/contact" class="nav-link text-warning fw-bold my-3"
+            >Contact</a
+          >
+
+          <a href="/admin/book" class="nav-link text-light fw-bold my-3"
+            >Booking Details</a
+          >
+          <a href="/admin/user" class="nav-link text-light fw-bold my-3"
             >User Information</a
           >
           <a href="/admin/menu" class="nav-link text-light fw-bold my-3"
-          >Menu</a>
-          </div>
-  
-          <div
-            class="col-lg-10 col-md-8 col-12 p-4"
-            style="background-color: #191928; border-left: 10px solid white"
+            >Menu</a
           >
-            <!-- contact -->
-          <div class="row m-0 p-2" id="contact">
+          <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+            >Logout</a
+          >
+        </div>
+
+        <div
+          class="col-lg-10 col-md-8 col-12 p-5"
+          style="background-color: #191928; border-left: 10px solid white"
+        >
+          <!-- contact -->
+          <div class="row m-0 p-0" id="contact">
             <button class="btn btn-warning text-light m-auto">
               Contact User Information
             </button>
@@ -44,6 +52,7 @@
             >
               <thead>
                 <th>ID</th>
+                <th>User ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Subject</th>
@@ -54,11 +63,12 @@
               <tbody>
                 <% if(data2.length==0){%>
                 <tr class="text-center">
-                  <td colspan="5">No Records</td>
+                  <td colspan="7">No Records</td>
                 </tr>
                 <%}%> <% data2.map((val)=>{ %>
                 <tr>
                   <td><%= val.Id%></td>
+                  <td><%= val.user_id%></td>
                   <td><%= val.Name%></td>
                   <td><%= val.Email%></td>
                   <td><%= val.Subject%></td>
@@ -73,8 +83,8 @@
               </tbody>
             </table>
           </div>
-          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

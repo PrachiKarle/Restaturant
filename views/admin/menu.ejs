@@ -8,10 +8,10 @@
   </head>
   <body>
     <div class="container-fluid m-0 p-0">
-      <div class="row m-0 p-3">
+      <div class="row m-0 p-0">
         <div
-          class="col-lg-2 col-md-4 col-12 p-3 text-center"
-          style="background-color: #191928;height:60vh"
+          class="col-lg-2 col-md-4 col-12 p-5 text-center"
+          style="background-color: #191928; height: 60vh"
         >
           <h3 class="text-warning fw-bold mb-4">Restoran</h3>
 
@@ -32,16 +32,17 @@
           <a href="/admin/menu" class="nav-link text-warning fw-bold my-3"
             >Menu</a
           >
+          <a href="/admin/logout" class="nav-link text-light fw-bold my-3"
+            >Logout</a
+          >
         </div>
 
         <div
           class="col-lg-10 col-md-8 col-12"
           style="background-color: #191928; border-left: 10px solid white"
         >
-
           <!-- Add menu -->
-          <div class="row m-0 p-3">
-
+          <div class="row m-0 p-5">
             <button
               class="btn btn-warning text-light my-3"
               data-bs-toggle="collapse"
@@ -101,8 +102,7 @@
               </div>
             </div>
 
-
-             <!-- starter -->
+            <!-- starter -->
             <div style="border-top: 5px solid white">
               <h4 class="text-warning fw-bold my-3 text-center">Starter</h4>
               <table class="table table-hover table-bordered table-striped">
@@ -122,17 +122,30 @@
                     <td><%= val.Id%></td>
                     <td><%= val.menu_name%></td>
                     <td><%= val.menu_price%></td>
-                    <td><img src="/uploads/<%= val.menu_img%>" height="80px" width="100px" alt=""></td>
                     <td>
-                        <a href="/admin/del_menu/<%= val.Id%>/starter" onclick="return 
-                        confirm('Are u sure ? ')">
-                            <i class="fa fa-trash text-danger fw-bold"></i>
-                        </a>
+                      <img
+                        src="/uploads/<%= val.menu_img%>"
+                        height="80px"
+                        width="100px"
+                        alt=""
+                      />
                     </td>
                     <td>
-                        <a href="/admin/edit_menu/<%= val.Id%>/starter" onclick="return confirm('Are u sure ? ')">
-                            <i class="fa fa-edit text-success fw-bold"></i>
-                        </a>
+                      <a
+                        href="/admin/del_menu/<%= val.Id%>/starter"
+                        onclick="return 
+                        confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-trash text-danger fw-bold"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/admin/edit_menu/<%= val.Id%>/starter"
+                        onclick="return confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-edit text-success fw-bold"></i>
+                      </a>
                     </td>
                   </tr>
                   <%})%>
@@ -140,86 +153,109 @@
               </table>
             </div>
 
-             <!-- main menu -->
-             <div style="border-top: 5px solid white">
-                <h4 class="text-warning fw-bold my-3 text-center">Main Menu</h4>
-                <table class="table table-hover table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Image</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% mainmenu.map((val)=>{%>
-                    <tr>
-                      <td><%= val.Id%></td>
-                      <td><%= val.menu_name%></td>
-                      <td><%= val.menu_price%></td>
-                      <td><img src="/uploads/<%= val.menu_img%>" height="80px" width="100px" alt=""></td>
-                      <td>
-                          <a href="/admin/del_menu/<%= val.Id%>/mainmenu" onclick="return 
-                          confirm('Are u sure ? ')">
-                              <i class="fa fa-trash text-danger fw-bold"></i>
-                          </a>
-                      </td>
-                      <td>
-                          <a href="/admin/edit_menu/<%= val.Id%>/mainmenu" onclick="return confirm('Are u sure ? ')">
-                              <i class="fa fa-edit text-success fw-bold"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    <%})%>
-                  </tbody>
-                </table>
-              </div>
+            <!-- main menu -->
+            <div style="border-top: 5px solid white">
+              <h4 class="text-warning fw-bold my-3 text-center">Main Menu</h4>
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% mainmenu.map((val)=>{%>
+                  <tr>
+                    <td><%= val.Id%></td>
+                    <td><%= val.menu_name%></td>
+                    <td><%= val.menu_price%></td>
+                    <td>
+                      <img
+                        src="/uploads/<%= val.menu_img%>"
+                        height="80px"
+                        width="100px"
+                        alt=""
+                      />
+                    </td>
+                    <td>
+                      <a
+                        href="/admin/del_menu/<%= val.Id%>/mainmenu"
+                        onclick="return 
+                          confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-trash text-danger fw-bold"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/admin/edit_menu/<%= val.Id%>/mainmenu"
+                        onclick="return confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-edit text-success fw-bold"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
 
-             <!-- desserts -->
-             <div style="border-top: 5px solid white">
-                <h4 class="text-warning fw-bold my-3 text-center">Desserts</h4>
-                <table class="table table-hover table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Image</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% desserts.map((val)=>{%>
-                    <tr>
-                      <td><%= val.Id%></td>
-                      <td><%= val.menu_name%></td>
-                      <td><%= val.menu_price%></td>
-                      <td><img src="/uploads/<%= val.menu_img%>" height="80px" width="100px" alt=""></td>
-                      <td>
-                          <a href="/admin/del_menu/<%= val.Id%>/desserts" onclick="return 
-                          confirm('Are u sure ? ')">
-                              <i class="fa fa-trash text-danger fw-bold"></i>
-                          </a>
-                      </td>
-                      <td>
-                          <a href="/admin/edit_menu/<%= val.Id%>/desserts" onclick="return confirm('Are u sure ? ')">
-                              <i class="fa fa-edit text-success fw-bold"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    <%})%>
-                  </tbody>
-                </table>
-              </div>
-
+            <!-- desserts -->
+            <div style="border-top: 5px solid white">
+              <h4 class="text-warning fw-bold my-3 text-center">Desserts</h4>
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% desserts.map((val)=>{%>
+                  <tr>
+                    <td><%= val.Id%></td>
+                    <td><%= val.menu_name%></td>
+                    <td><%= val.menu_price%></td>
+                    <td>
+                      <img
+                        src="/uploads/<%= val.menu_img%>"
+                        height="80px"
+                        width="100px"
+                        alt=""
+                      />
+                    </td>
+                    <td>
+                      <a
+                        href="/admin/del_menu/<%= val.Id%>/desserts"
+                        onclick="return 
+                          confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-trash text-danger fw-bold"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/admin/edit_menu/<%= val.Id%>/desserts"
+                        onclick="return confirm('Are u sure ? ')"
+                      >
+                        <i class="fa fa-edit text-success fw-bold"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
           </div>
-
         </div>
-        
       </div>
     </div>
   </body>
